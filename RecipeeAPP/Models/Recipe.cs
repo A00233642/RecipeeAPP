@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipeeAPP.Models
 {
-    public class Recipes
+    public class Recipe
     {
         [Key]
         public int RecipeID { get; set; }
