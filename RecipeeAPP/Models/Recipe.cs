@@ -19,6 +19,9 @@ namespace RecipeeAPP.Models
 
         public string Utensils { get; set; }
 
+        public IEnumerable<String> Tags { get; set; }
+
+        public DateTime Updated { get; set; }
 
 
     }
