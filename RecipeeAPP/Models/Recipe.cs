@@ -15,14 +15,14 @@ namespace RecipeeAPP.Models
 
         public string Description { get; set; }
 
-        public string Ingredient { get; set; }
+        public string ImageUrl { get; set; }
 
         public string Utensils { get; set; }
 
         public IEnumerable<String> Tags { get; set; }
 
-        public DateTime Updated { get; set; }
+        public DateTime Updated { get; set; } = DateTime.Now;
 
-
+   //   public string Ingredient { get; set; }
     }
 }

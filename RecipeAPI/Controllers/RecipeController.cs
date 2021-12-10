@@ -48,52 +48,6 @@ namespace RecipeAPI.Controllers
             return recipe;
         }
 
-        //Get: api/Recipe
-        [HttpGet("{id}")]
-        public async Task<ActionResult> PutRecipe(int id, Recipe recipe)
-        {
-            if (id != recipe.RecipeID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(recipe).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RecipeExists(id))
-                {
-                    return NotFound();
-                }
-
-                else
-                {
-                    throw;
-                }
-
-            }
-            return NoContent();
-        }
-
-        //Post: api/Recipe
-        [HttpPost]
-        public async Task<ActionResult> PostRecipe(Recipe recipe)
-        {
-            _context.Recipe.Add(recipe);
-            await _context.SaveChangesAsync();
-            Response.Headers.Add("Access-Control-Allow-Origin", "https://localhost:44311/");
-            return CreatedAtAction("GetRecipe", new { id = recipe.RecipeID }, recipe);
-
-        }
-
-        private bool RecipeExists(int id)
-        {
-            return _context.Recipe.Any(a => a.RecipeID == id);
-        }
     }
+
 }

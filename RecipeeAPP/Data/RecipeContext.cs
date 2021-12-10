@@ -16,7 +16,7 @@ namespace RecipeeAPP.Data
 
         }
 
-        public DbSet<Recipe> Recipe { get; set; }
+        public DbSet<RecipeeAPP.Models.Recipe> Recipe { get; set; }
 
     }
 }
