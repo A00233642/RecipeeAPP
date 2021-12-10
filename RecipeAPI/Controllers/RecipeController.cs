@@ -92,6 +92,25 @@ namespace RecipeAPI.Controllers
 
         }
 
+        [HttpGet("{AddRecipe}")]
+        public async Task<ActionResult> AddRecipe(String Title, string Description, string url)
+        {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            var Recipes = new Recipe();
+            Recipes.Title = Title;
+
+            Recipes.Description = Description;
+            Recipes.ImageUrl = url;
+
+            _context.Recipe.Add(Recipes);
+            await _context.SaveChangesAsync();
+
+
+
+            return CreatedAtAction("GetRecipes", new { id = 0 }, Recipes);
+        }
+
+
         private bool RecipeExists(int id)
         {
             return _context.Recipe.Any(a => a.RecipeID == id);
