@@ -23,7 +23,7 @@ namespace RecipeAPI.Controllers
         {
             _context = context;
         }
-           
+
         //Get: Recipe
         [HttpGet]
 
@@ -49,6 +49,44 @@ namespace RecipeAPI.Controllers
         }
 
         //Get: api/Recipe
-     //   [HttpGet("{}")]
+        [HttpGet("{id}")]
+        public async Task<ActionResult> PutRecipe(int id, Recipe recipe)
+        {
+            if (id != recipe.RecipeID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(recipe).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RecipeExists(id))
+                {
+                    return NotFound();
+                }
+
+                else
+                {
+                    throw;
+                }
+
+            }
+            return NoContent();
+        }
+
+        //Get: api/Recipe
+       // [HttpPost]
+       
+
+        private bool RecipeExists(int id)
+        {
+            return _context.Recipe.Any(a => a.RecipeID == id);
+        }
     }
 }
