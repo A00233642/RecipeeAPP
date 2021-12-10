@@ -110,6 +110,23 @@ namespace RecipeAPI.Controllers
             return CreatedAtAction("GetRecipes", new { id = 0 }, Recipes);
         }
 
+        //Delete: api/Recipe
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRecipes(int id)
+        {
+            var recipes = await _context.Recipe.FindAsync(id);
+            if (recipes == null)
+            {
+                return NotFound();
+            }
+
+            _context.Recipe.Remove(recipes);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+
 
         private bool RecipeExists(int id)
         {
