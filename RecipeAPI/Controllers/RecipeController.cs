@@ -80,9 +80,16 @@ namespace RecipeAPI.Controllers
             return NoContent();
         }
 
-        //Get: api/Recipe
-       // [HttpPost]
-       
+        //Post: api/Recipe
+        [HttpPost]
+        public async Task<ActionResult> PostRecipe(Recipe recipe)
+        {
+            _context.Recipe.Add(recipe);
+            await _context.SaveChangesAsync();
+            Response.Headers.Add("Access-Control-Allow-Origin", "https://localhost:44311/");
+            return CreatedAtAction("GetRecipe", new { id = recipe.RecipeID }, recipe);
+
+        }
 
         private bool RecipeExists(int id)
         {
