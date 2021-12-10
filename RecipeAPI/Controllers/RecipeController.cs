@@ -33,7 +33,22 @@ namespace RecipeAPI.Controllers
             return await _context.Recipe.ToListAsync();
         }
 
+        //Get: api/Recipe
+        [HttpGet("{title}")]
 
+        public async Task<ActionResult<List<Recipe>>> GetRecipe(String title)
+        {
+            var recipe = _context.Recipe.Where(t => t.Title == title).ToList();
 
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+
+            return recipe;
+        }
+
+        //Get: api/Recipe
+     //   [HttpGet("{}")]
     }
 }
