@@ -15,4 +15,8 @@
     <PackageReference Include="WebDriverManager" Version="2.12.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RecipeAPI\RecipeAPI.csproj" />
+  </ItemGroup>
+
 </Project>

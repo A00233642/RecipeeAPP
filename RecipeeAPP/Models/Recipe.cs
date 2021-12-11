@@ -11,6 +11,7 @@ namespace RecipeeAPP.Models
         [Key]
         public int RecipeID { get; set; }
 
+
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -19,10 +20,13 @@ namespace RecipeeAPP.Models
 
         public string Utensils { get; set; }
 
-        public IEnumerable<String> Tags { get; set; }
+      //  public IEnumerable<String> Tags { get; set; }
 
         public DateTime Updated { get; set; } = DateTime.Now;
 
-     public virtual IEnumerable<Ingredient> Ingredients  { get; set; }
+
+        [System.Text.Json.Serialization.JsonIgnore]
+
+        public virtual IEnumerable<Ingredient> Ingredients  { get; set; }
     }
 }

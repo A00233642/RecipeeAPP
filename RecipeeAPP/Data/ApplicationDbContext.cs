@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RecipeeAPP.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,8 +15,8 @@ namespace RecipeeAPP.Data
         {
         }
 
-        public DbSet<RecipeeAPP.Models.Recipe> Recipe { get; set; }
-        public DbSet<RecipeeAPP.Models.User> User { get; set; }
-        public DbSet<RecipeeAPP.Models.Ingredient> Ingredient { get; set; }
+        public virtual DbSet<RecipeeAPP.Models.Recipe> Recipes { get; set; }
+        public DbSet<RecipeeAPP.Models.User> Users { get; set; }
+        public virtual DbSet<RecipeeAPP.Models.Ingredient> Ingredients { get; set; }
     }
 }
