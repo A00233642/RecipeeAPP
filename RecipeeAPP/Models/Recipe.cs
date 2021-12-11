@@ -23,6 +23,6 @@ namespace RecipeeAPP.Models
 
         public DateTime Updated { get; set; } = DateTime.Now;
 
-   //   public string Ingredient { get; set; }
+     public virtual IEnumerable<Ingredient> Ingredients  { get; set; }
     }
 }
