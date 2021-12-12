@@ -19,4 +19,6 @@ namespace RecipeeAPP.Data
         public DbSet<RecipeeAPP.Models.User> Users { get; set; }
         public virtual DbSet<RecipeeAPP.Models.Ingredient> Ingredients { get; set; }
     }
+
+
 }
