@@ -15,10 +15,10 @@ namespace IntegrationTest
     public class UnitTest1
     {
 
-        private IWebDriver _webDriver;
-        //EdgeDriver _driver;
+      //  private IWebDriver _webDriver;
+        EdgeDriver _driver;
        // EdgeDriver _WebDriver;
-        private string _url = "https://localhost:44311/";
+        private string _url = "https://localhost:44311/RecipesTemp";
 
         [TestInitialize]
         public void Recipe()
@@ -30,16 +30,16 @@ namespace IntegrationTest
                 AcceptInsecureCertificates = true
             };
 
-            _webDriver = new EdgeDriver();
-
+            //  _webDriver = new EdgeDriver();
+            _driver = new EdgeDriver();
         }
 
        [TestMethod]
         public void AddRecipe()
         {
-            _webDriver.Url = _url;
-            var text = _webDriver.FindElement(By.Id("recipeName"));
-            var button = _webDriver.FindElement(By.Id("BtnAdd"));
+            _driver.Url = _url;
+            var text = _driver.FindElement(By.Id("recipeName"));
+            var button = _driver.FindElement(By.Id("BtnAdd"));
             button.Click();
         }
 
@@ -47,7 +47,7 @@ namespace IntegrationTest
            [TestCleanup]
         public void Teardown()
         {
-            _webDriver.Quit();
+            _driver.Quit();
         }
     }
 }
