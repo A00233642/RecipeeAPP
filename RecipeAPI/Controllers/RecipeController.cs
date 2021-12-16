@@ -33,6 +33,14 @@ namespace RecipeAPI.Controllers
             return await _context.Recipes.ToListAsync();
         }
 
+        [HttpGet ("User")]
+
+        public async Task<ActionResult<IEnumerable<User>>> GetUser()
+        {
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            return await _context.Users.ToListAsync();
+        }
+
         //Get: api/Recipe
         [HttpGet("{title}")]
 
