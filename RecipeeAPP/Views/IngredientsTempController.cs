@@ -25,6 +25,8 @@ namespace RecipeeAPP.Views
             return View(await _context.Ingredients.ToListAsync());
         }
 
+
+
         // GET: IngredientsTemp/Details/5
         public async Task<IActionResult> Details(int? id)
         {

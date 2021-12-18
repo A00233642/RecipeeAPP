@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Korzh.EasyQuery.Linq;
 using RecipeeAPP.Data;
 using RecipeeAPP.Models;
 
@@ -25,6 +26,32 @@ namespace RecipeeAPP.Views
             return View(await _context.Recipes.ToListAsync());
         }
 
+        [HttpGet]
+
+        public async Task<IActionResult> Index(string searchString)
+        {
+            ViewData["GetRecipeDetails"] = searchString;
+
+            var empquery = from x in _context.Recipes select x;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                empquery = empquery.Where(x => x.Title.Contains(searchString) || x.Description.Contains(searchString) || x.Utensils.Contains(searchString) || x.ImageUrl.Contains(searchString));
+
+            }
+
+            return View(await empquery.AsNoTracking().ToListAsync());
+            //      var recipe = from m in _context.Recipes
+            ////                 select m;
+
+            ////  if (!String.IsNullOrEmpty(searchString))
+            //   {
+            //       recipe = recipe.Where(s => s.Title!.Contains(searchString));
+            ////  }
+
+            //   return View(await recipe.ToListAsync());
+        }
+
         // GET: RecipesTemp/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -42,6 +69,8 @@ namespace RecipeeAPP.Views
 
             return View(recipe);
         }
+
+
 
         // GET: RecipesTemp/Create
         public IActionResult Create()
@@ -149,5 +178,7 @@ namespace RecipeeAPP.Views
         {
             return _context.Recipes.Any(e => e.RecipeID == id);
         }
+
+        
     }
 }

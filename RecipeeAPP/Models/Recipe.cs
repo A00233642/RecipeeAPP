@@ -27,6 +27,7 @@ namespace RecipeeAPP.Models
 
        // public virtual Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<TEntity> Ignore(string Tag);
 
+      //  public string text { get; set; }
 
         public DateTime Updated { get; set; } = DateTime.Now;
 
