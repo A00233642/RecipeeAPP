@@ -10,8 +10,14 @@
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
+    <form method="get" asp-action="Index">
+        <p>
+            Title: <input type="text" placeholder="Enter Name or Email" value="@ViewData["GetUserDetails"]" name="searchString" />
 
-    
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+
     <thead>
         <tr>
             <th>

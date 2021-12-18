@@ -25,8 +25,26 @@ namespace RecipeeAPP.Views
             return View(await _context.Users.ToListAsync());
         }
 
-        // GET: UsersTemp/Details/5
-        public async Task<IActionResult> Details(int? id)
+
+        [HttpGet]
+
+        public async Task<IActionResult> Index(string searchString)
+        {
+            ViewData["GetUserDetails"] = searchString;
+
+            var empquery = from x in _context.Users select x;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                empquery = empquery.Where(x => x.Name.Contains(searchString) || x.Email.Contains(searchString));
+
+            }
+
+            return View(await empquery.AsNoTracking().ToListAsync());
+
+        }
+            // GET: UsersTemp/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
