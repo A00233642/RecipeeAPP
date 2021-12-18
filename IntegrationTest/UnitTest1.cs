@@ -34,7 +34,9 @@ namespace IntegrationTest
             _driver = new EdgeDriver();
         }
 
-       [TestMethod]
+        
+
+        [TestMethod]
         public void AddRecipe()
         {
             _driver.Url = _url;
@@ -44,7 +46,30 @@ namespace IntegrationTest
         }
 
 
-           [TestCleanup]
+       
+
+        [TestMethod]
+        public void CreateRecipe()
+        {
+            _driver.Navigate()
+.GoToUrl("https://localhost:44311/RecipesTemp/Create");
+
+
+            _driver.FindElement(By.Id("Title")).SendKeys("Test Title");
+
+            _driver.FindElement(By.Id("Utensils")).SendKeys("Test Utensils");
+
+            _driver.FindElement(By.Id("Description")).SendKeys("Test Description");
+
+            _driver.FindElement(By.Id("Create")).Click();
+
+            Assert.Equals("Create New Recipe", _driver.Title);
+
+            Assert.IsTrue(true, "Create New Recipe");
+        }
+
+
+            [TestCleanup]
         public void Teardown()
         {
             _driver.Quit();
