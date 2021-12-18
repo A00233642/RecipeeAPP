@@ -25,10 +25,25 @@ namespace RecipeeAPP.Views
             return View(await _context.Ingredients.ToListAsync());
         }
 
+        [HttpGet]
 
+        public async Task<IActionResult> Index(string searchString)
+        {
+            ViewData["GetIngredientDetails"] = searchString;
 
-        // GET: IngredientsTemp/Details/5
-        public async Task<IActionResult> Details(int? id)
+            var empquery = from x in _context.Ingredients select x;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                empquery = empquery.Where(x => x.IngredientName.Contains(searchString) || x.IngredientPrice.Contains(searchString));
+
+            }
+
+            return View(await empquery.AsNoTracking().ToListAsync());
+
+        }
+            // GET: IngredientsTemp/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {

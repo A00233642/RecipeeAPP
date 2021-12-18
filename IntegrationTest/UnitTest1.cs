@@ -102,6 +102,7 @@ namespace IntegrationTest
         }
 
         [TestMethod]
+       
         public void TestIngredientTempCreate()
         {
             _driver.Navigate().GoToUrl("https://localhost:44311/IngredientsTemp/Create");
