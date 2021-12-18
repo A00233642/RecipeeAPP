@@ -101,6 +101,14 @@ namespace IntegrationTest
             Assert.AreEqual("Delete - Recipe Project", _driver.Title);
         }
 
+        [TestMethod]
+        public void TestIngredientTempCreate()
+        {
+            _driver.Navigate().GoToUrl("https://localhost:44311/IngredientsTemp/Create");
+            Assert.IsTrue(_driver.Title.Contains("Create - Ingredient"));
+            Assert.AreEqual("Create - Recipe Project", _driver.Title);
+        }
+
         [TestCleanup]
         public void Quit()
         {
