@@ -39,7 +39,7 @@ namespace IntegrationTest
         [TestMethod]
         public void AddRecipe()
         {
-            _webDriver.Url = _url;
+            _driver.Url = _url;
             var text = _driver.FindElement(By.Id("recipeName"));
             var button = _driver.FindElement(By.Id("BtnAdd"));
             button.Click();
@@ -71,7 +71,7 @@ namespace IntegrationTest
         [TestMethod]
         public void TitlePage()
         {
-            // Replace with your own test logic
+            
             _driver.Url = _url;
             _url = "https://localhost:44311";
             Assert.AreEqual("Home page - RecipeeApp", _driver.Title);
@@ -85,6 +85,21 @@ namespace IntegrationTest
             Assert.AreEqual("Create - Recipe Project", _driver.Title);
         }
 
+        [TestMethod]
+        public void TestRecipesTempEdit()
+        {
+            _driver.Navigate().GoToUrl("https://localhost:44311/RecipesTemp/Edit/3");
+            Assert.IsTrue(_driver.Title.Contains("Edit - Recipe"));
+            Assert.AreEqual("Edit - Recipe Project", _driver.Title);
+        }
+
+        [TestMethod]
+        public void TestRecipesTempDelete()
+        {
+            _driver.Navigate().GoToUrl("https://localhost:44311/RecipesTemp/Delete/3");
+            Assert.IsTrue(_driver.Title.Contains("Delete - Recipe"));
+            Assert.AreEqual("Delete - Recipe Project", _driver.Title);
+        }
 
         [TestCleanup]
         public void Quit()
