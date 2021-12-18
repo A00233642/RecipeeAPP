@@ -15,7 +15,7 @@ namespace IntegrationTest
     public class UnitTest1
     {
 
-      //  private IWebDriver _webDriver;
+       // private IWebDriver _webDriver;
         EdgeDriver _driver;
        // EdgeDriver _WebDriver;
         private string _url = "https://localhost:44311/RecipesTemp";
@@ -30,7 +30,7 @@ namespace IntegrationTest
                 AcceptInsecureCertificates = true
             };
 
-            //  _webDriver = new EdgeDriver();
+            new DriverManager().SetUpDriver(new EdgeConfig());
             _driver = new EdgeDriver();
         }
 
@@ -39,7 +39,7 @@ namespace IntegrationTest
         [TestMethod]
         public void AddRecipe()
         {
-            _driver.Url = _url;
+            _webDriver.Url = _url;
             var text = _driver.FindElement(By.Id("recipeName"));
             var button = _driver.FindElement(By.Id("BtnAdd"));
             button.Click();
@@ -71,10 +71,18 @@ namespace IntegrationTest
         [TestMethod]
         public void TitlePage()
         {
-            // Replace with your own test logic
+         
             _driver.Url = _url;
             _url = "https://localhost:44311";
             Assert.AreEqual("Home page - RecipeeApp", _driver.Title);
+        }
+
+        [TestMethod]
+        public void TestRecipesTempCreate()
+        {
+            _driver.Navigate().GoToUrl("https://localhost:44311/RecipesTemp/Create");
+            Assert.IsTrue(_driver.Title.Contains("Create - Recipe"));
+            Assert.AreEqual("Create - Recipe Project", _driver.Title);
         }
 
 
