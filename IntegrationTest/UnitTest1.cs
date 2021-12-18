@@ -71,7 +71,7 @@ namespace IntegrationTest
         [TestMethod]
         public void TitlePage()
         {
-            // Replace with your own test logic
+           
             _driver.Url = _url;
             _url = "https://localhost:44311";
             Assert.AreEqual("Home page - RecipeeApp", _driver.Title);
